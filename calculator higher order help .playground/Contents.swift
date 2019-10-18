@@ -24,3 +24,5 @@ func filterFunc(arr: [Double],closure:(Double) -> Bool) -> [Double] {
 var testArray:[Double] = [1,2,3,4,6,78,9,87,54,2,456]
 
 print(filterFunc(arr:testArray , closure:{$0 > 10}))
+
+

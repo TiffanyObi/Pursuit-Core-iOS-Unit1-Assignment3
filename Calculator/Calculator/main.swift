@@ -63,19 +63,35 @@ func filterFunc(arr: [Double],closure:(Double) -> Bool) -> [Double] {
      var result = [Double]()
     
     for num in arr {
+        
         if closure(num) {
             result.append(num)
-        }
+            }
     }
-    
-    
-    
+
     return result
 }
+// ******************************* //
 
-var userIsUsing = true
+//    map 6,7,98,09,89 by (+,-,/,*, <, >) 7
 
+func stringToArray (str2: String) -> [Double] {
+    
+    //var stringArray:[Int] = []
+    
+    for char in str2 {
+        if char.isNumber {
+           // stringArray.append()     }
+    }
+    
+ 
+}
+    return [Double]()
+}
+let userIsUsing = true
 
+print("Youre calculator is now on!")
+sleep(2)
 
 repeat {
     
@@ -94,7 +110,7 @@ repeat {
     
     if userInputtwo.lowercased() == "yes" {
         
-        print("Lets have some fun!If you would like to use our \"Random Operater\" gadget ,write a calculation usuing \"?\" as the operand. ex: \" 5 ? 5 \"  ") }
+        print("Lets have some fun!If you would like to use our \"Random Operater\" gadget ,write a calculation usuing \"?\" as the operand. ex: \" 5 ? 5 \"  ")
         
         let userInputthree = readLine() ?? ""
         
@@ -102,31 +118,68 @@ repeat {
           print(finalResult)
     
         
-    if userInputtwo.lowercased() == "no"{
-        print(" We have other Awsome features on this calculator. if tou would like to use one of these functions please type \"map\", \"filter\", or \"reduce\".")
+    } else if
+        
+        userInputtwo.lowercased() == "no"{
+        
+        print(" We have other Awesome features on this calculator. if you would like to use one of these functions please type \"map\", \"filter\", or \"reduce\".")
     
         let userInputfour = readLine() ?? ""
         
-        if userInputfour.lowercased() == "filter" {
+       // let higherOrderFunctions:[String] = ["filter","map","reduce"]
+        
+       // let higherOr = higherOrderFunctions.description
+        
+        
+      //  print(higherOr)
+        
+       // if userInputfour == higherOr {
+    
+        switch userInputfour {
             
-            print("In order to use this filter function, write \"filter (your set of numbers) by (a greater than or less than sign) 4\" for example you can write \" filter 1,2,3,4,5,6,7 by < 4\". This example will print out 1,2,3")
+        case "filter" :
+            
+            print("In order to use this filter function, write \"filter (your set of numbers) by (a greater than or less than sign) 4\" for example you can write \" filter 1,2,3,4,5,6,7 by < 4\". This example will print out 1,2,3. REMEBER TO ADD THE \",\"")
+            
+            let userInputfive = readLine() ?? ""
+            
+            let userFilterInput = userInputfive.components(separatedBy: " " )
+            
+          //  var userNumberFilterInputArray:[Int] = []
+            
+            for char in userFilterInput {
+                if char.contains("\(Int())") {
+                
+                }
+            }
+            
+            
+        case "map" :
+            print()
+            
+            
+        case "reduce" :
+            print()
+            
+            
+            
+        default:
+        
+            print("Sorry that's not an option")
         }
-        
-        
-        
-        
-        
-        
-        
-        
+            
     }
-    
-    
-    
-    
-    
-    
-    
+            //var userNumberFilterInputArray:[Int] = []
+            //var userOpAr :String = ""
+            //var userFilterNumBy: Int = user
+            
+            
+            
+           // print(filterFunc(arr: <#T##[Double]#>, closure: (Double) -> Bool))
+
+
+
+
     
 } while userIsUsing
 
