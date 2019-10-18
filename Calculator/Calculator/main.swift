@@ -10,10 +10,11 @@ import Foundation
 
 func mathStuffFactory(opString: String) -> (Double, Double) -> Double {
     var opString = opString
-    if opString == "?" {
-        opString = ["/", "+", "*", "-"].randomElement() ?? "*"
-    }
     
+    if opString == "?" {
+        opString = ["/", "+", "*", "-"].randomElement() ?? "*"}
+
+
     switch opString {
         
     case "+":
@@ -30,8 +31,10 @@ func mathStuffFactory(opString: String) -> (Double, Double) -> Double {
     default:
         
         return {x, y in x + y}
+        }
     }
-}
+
+// ****************************** //
 
 func arithmeticOperation (str: String) -> Double {
     
@@ -54,13 +57,24 @@ func arithmeticOperation (str: String) -> Double {
     return result
 }
 
+// ******************************* //
+
+func filterFunc(arr: [Double],closure:(Double) -> Bool) -> [Double] {
+     var result = [Double]()
+    
+    for num in arr {
+        if closure(num) {
+            result.append(num)
+        }
+    }
+    
+    
+    
+    return result
+}
+
 var userIsUsing = true
 
-//var userInput = readLine() ?? ""
-
-
-//let finalResult = arithmeticOperation(str: userInput)
-//print(finalResult)
 
 
 repeat {
@@ -68,29 +82,51 @@ repeat {
     
     print("Please type in your calculation with a space in between. for example: \"5 + 5\". ")
     
-    var userInput = readLine() ?? ""
+    let userInputOne = readLine() ?? ""
     
-    var finalResult = arithmeticOperation(str:userInput)
+    var finalResult = arithmeticOperation(str:userInputOne)
+    
     print(finalResult)
 
     print("Would you like to do another calculation? Type yes or no")
     
-    userInput = readLine() ?? ""
+   let userInputtwo = readLine() ?? ""
     
-    if userInput.lowercased() == "yes" {
+    if userInputtwo.lowercased() == "yes" {
         
-        print("Lets have some fun!If you would like to use our \"Random Operater\" gadget ,write a calculation usuing \"?\" as the operand. ex: \" 5 ? 5 \"  ")
+        print("Lets have some fun!If you would like to use our \"Random Operater\" gadget ,write a calculation usuing \"?\" as the operand. ex: \" 5 ? 5 \"  ") }
         
-        userInput = readLine() ?? ""
+        let userInputthree = readLine() ?? ""
         
-        finalResult = arithmeticOperation(str:userInput)
-           print(finalResult)
+       finalResult = arithmeticOperation(str:userInputthree)
+          print(finalResult)
+    
         
-    } else if userInput.lowercased() == "no"{
-        print(" You're Calculater is shutting off")
+    if userInputtwo.lowercased() == "no"{
+        print(" We have other Awsome features on this calculator. if tou would like to use one of these functions please type \"map\", \"filter\", or \"reduce\".")
+    
+        let userInputfour = readLine() ?? ""
         
-        userIsUsing = false
+        if userInputfour.lowercased() == "filter" {
+            
+            print("In order to use this filter function, write \"filter (your set of numbers) by (a greater than or less than sign) 4\" for example you can write \" filter 1,2,3,4,5,6,7 by < 4\". This example will print out 1,2,3")
+        }
+        
+        
+        
+        
+        
+        
+        
+        
     }
+    
+    
+    
+    
+    
+    
+    
     
 } while userIsUsing
 
