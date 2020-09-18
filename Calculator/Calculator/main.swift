@@ -46,12 +46,14 @@ func arithmeticOperation (str: String) -> Double {
         
         return 0.0
     }
+    
     let op1 = Double(userInputArray[0]) ?? 0.0
     let op2 = Double(userInputArray[2]) ?? 0.0
     let operater = userInputArray[1]
     
     
     let closureOp = mathStuffFactory(opString: operater)
+
     let result = closureOp(op1,op2)
 
     return result
@@ -88,78 +90,154 @@ func stringToArray (str2: String) -> [Double] {
 }
     return [Double]()
 }
+
+//func filterInput(input:String) -> [Int] {
+//    var output =
+//
+//
+//
+//   return output
+//}
+
+
+
 let userIsUsing = true
 
 print("Youre calculator is now on!")
 sleep(2)
 
+print("Please type in your calculation with a space in between. for example: \"5 + 5\". ")
+
+let firstline = readLine() ?? ""
+
+print(arithmeticOperation(str: firstline))
+
 repeat {
     
-    
-    print("Please type in your calculation with a space in between. for example: \"5 + 5\". ")
-    
-    let userInputOne = readLine() ?? ""
-    
-    var finalResult = arithmeticOperation(str:userInputOne)
-    
-    print(finalResult)
+      print("Would you like to do another calculation? Type yes or no")
 
-    print("Would you like to do another calculation? Type yes or no")
+    
+//    print("Please type in your calculation with a space in between. for example: \"5 + 5\". ")
+    
+    let userInputOne = readLine()?.lowercased() ?? ""
+    
+    if userInputOne == "yes" {
+        
+        print("Please type in your calculation with a space in between. for example: \"5 + 5\". ")
+    
+        let userInputone1 = readLine() ?? ""
+        
+        let finalResult = arithmeticOperation(str:userInputone1)
+    
+        print(finalResult)
+        
+    } else if userInputOne == "no" {
+
+   print("Lets have some fun!If you would like to use our \"Random Operater\" gadget ,write a calculation usuing \"?\" as the operand. ex: \" 5 ? 5 \" . Remember to put a space between the numbers.  ")
     
    let userInputtwo = readLine() ?? ""
     
-    if userInputtwo.lowercased() == "yes" {
+    
         
-        print("Lets have some fun!If you would like to use our \"Random Operater\" gadget ,write a calculation usuing \"?\" as the operand. ex: \" 5 ? 5 \"  ")
-        
-        let userInputthree = readLine() ?? ""
-        
-       finalResult = arithmeticOperation(str:userInputthree)
+      let finalResult = arithmeticOperation(str:userInputtwo)
           print(finalResult)
     
         
-    } else if
-        
-        userInputtwo.lowercased() == "no"{
+    }
         
         print(" We have other Awesome features on this calculator. if you would like to use one of these functions please type \"map\", \"filter\", or \"reduce\".")
     
-        let userInputfour = readLine() ?? ""
+        let userInputfour = readLine()?.lowercased() ?? ""
         
-       // let higherOrderFunctions:[String] = ["filter","map","reduce"]
-        
-       // let higherOr = higherOrderFunctions.description
-        
-        
-      //  print(higherOr)
-        
-       // if userInputfour == higherOr {
+   
     
         switch userInputfour {
             
         case "filter" :
             
-            print("In order to use this filter function, write \"filter (your set of numbers) by (a greater than or less than sign) 4\" for example you can write \" filter 1,2,3,4,5,6,7 by < 4\". This example will print out 1,2,3. REMEBER TO ADD THE \",\"")
+            print("In order to use this filter function, start with an array of numbers . An example can be \" 12,567,90,7,234,50,9 \". Remember to seperate your numbers using commas! The numbers would be filtered by multiples of 7")
             
             let userInputfive = readLine() ?? ""
             
-            let userFilterInput = userInputfive.components(separatedBy: " " )
+            let userFilterInput = userInputfive.components(separatedBy: "," )
             
-          //  var userNumberFilterInputArray:[Int] = []
+            var outcomeFilter = [Int]()
             
-            for char in userFilterInput {
-                if char.contains("\(Int())") {
-                
+            
+
+            for number in userFilterInput {
+                if (Int(number) ?? -99) % 7 == 0 {
+                     outcomeFilter.append(Int(number) ?? -99)
                 }
+               
             }
             
-            
+            print(outcomeFilter)
         case "map" :
-            print()
             
+            print("For the map function we're switching it up a bit. You have to translate the numbers you input by either subtracting them from or dividing them by 175. Ex. \" 23,56,7,8,456,12 - \". Remember proper commas and spaces.")
+        let mapline = readLine() ?? ""
+            
+            let mapArray = mapline.components(separatedBy: " ")
+            let inTArray = mapArray[0]
+            
+            let intSep = inTArray.components(separatedBy: ",")
+            var ints = [Double]()
+            for int in intSep {
+                ints.append(Double(int) ?? -99)
+            }
+            let operand = mapArray[1]
+            var mapOutput = [Double]()
+           switch operand {
+           case "-":
+            
+            for num in ints {
+                mapOutput.append(175 - num)
+            }
+            print(mapOutput)
+           case "/":
+            for num in ints {
+                mapOutput.append(num / 175)
+            }
+
+            print(mapOutput)
+           default:
+            print("Please try again")
+            }
             
         case "reduce" :
-            print()
+            print("To use the reduce function. You will be reducing your input array by either multiplying them or adding them together. Ex input \" 23,567,8,9,76,12 + ")
+            
+            let reduceline = readLine() ?? ""
+            let reduceArray = reduceline.components(separatedBy: " ")
+             let inTArray = reduceArray[0]
+             
+             let intSep = inTArray.components(separatedBy: ",")
+             var ints = [Double]()
+             for int in intSep {
+                 ints.append(Double(int) ?? -99)
+             }
+             let operand = reduceArray[1]
+            
+            switch operand {
+            case "+":
+                var reduceAddOutput = 0.0
+             
+             for num in ints {
+                 reduceAddOutput += num
+             }
+             print(reduceAddOutput)
+                
+            case "*":
+                var reduceMultOutput = 1.0
+             for num in ints {
+              reduceMultOutput *= num
+             }
+             print(reduceMultOutput)
+            default:
+             print("Please try again")
+             }
+             
             
             
             
@@ -167,18 +245,6 @@ repeat {
         
             print("Sorry that's not an option")
         }
-            
-    }
-            //var userNumberFilterInputArray:[Int] = []
-            //var userOpAr :String = ""
-            //var userFilterNumBy: Int = user
-            
-            
-            
-           // print(filterFunc(arr: <#T##[Double]#>, closure: (Double) -> Bool))
-
-
-
 
     
 } while userIsUsing
